@@ -1,10 +1,10 @@
 class CashRegister
-  attr_accessor :employee_discount, :total, :title, :quantity, :price, :item_total
+  attr_accessor :employee_discount, :total, :title, :quantity, :price, :item_array
 
   def initialize(discount = 0)
     @employee_discount = discount
     @total = 0
-    @item_total = []
+    @item_array = []
   end
 
   def discount
@@ -16,7 +16,7 @@ class CashRegister
     @title = title
     @quantity = quantity
     @quantity.times do
-      @item_total << @title
+      @item_array << @title
     end
     @total += @price * @quantity
   end
@@ -33,12 +33,12 @@ class CashRegister
   end
 
   def items
-    @item_total
+    @item_array
   end
 
   def void_last_transaction
     @quantity.times do
-      @item_total.pop
+      @item_array.pop
     end
     @total -= @price * @quantity
   end
